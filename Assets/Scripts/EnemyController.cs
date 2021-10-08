@@ -22,6 +22,8 @@ public class EnemyController : MonoBehaviour
         ScoreManager.Score += scorePoint;
         // ubah text score
         UIManager.Instance.ChangeScore();
+        // ubah ukuran player
+        other.GetComponent<PlayerController>().ChangeSize();
         // non aktifkan semua komponen kecuali game object dan script
         ActivateEnemy(false);
         // jalankan coroutine
