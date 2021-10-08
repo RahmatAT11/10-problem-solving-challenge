@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     private BoxCollider2D enemyCollider;
     private SpriteRenderer enemyRenderer;
 
-    private void Start()
+    private void Awake()
     {
         enemyCollider = GetComponent<BoxCollider2D>();
         enemyRenderer = GetComponent<SpriteRenderer>();
@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
         if (!other.gameObject.CompareTag("Player")) return;
         
         // tambahkan score
-        ScoreManager.Score += scorePoint;
+        ScoreManager.Instance.Score += scorePoint;
         // ubah text score
         UIManager.Instance.ChangeScore();
         // ubah ukuran player

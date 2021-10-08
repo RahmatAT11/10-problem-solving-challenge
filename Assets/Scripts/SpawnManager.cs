@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -30,15 +31,24 @@ public class SpawnManager : MonoBehaviour
 
     private List<EnemyController> currentActiveEnemy = new List<EnemyController>();
 
-    private void Start()
+    private void Awake()
     {
         player = FindObjectOfType<PlayerController>();
+    }
+
+    private void Start()
+    {
         RandomSpawnEnemy();
     }
 
     private void RandomSpawnEnemy()
     {
-        int numberOfBox = Random.Range(1, 10);
+        if (GameManager.Instance.isGameOver)
+        {
+            return;
+        }
+        
+        int numberOfBox = Random.Range(5, 10);
 
         for (int i = 0; i < numberOfBox; i++)
         {
