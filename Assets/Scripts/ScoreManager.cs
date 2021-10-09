@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -22,4 +23,17 @@ public class ScoreManager : MonoBehaviour
     }
     
     public float Score = 0f;
+    private float scoreHighlightRange = 10f;
+    private float lastScoreHightlight = 0f;
+
+    public void IncreaseCurrentScore(float value)
+    {
+        Score += value;
+        
+        if (Score - lastScoreHightlight >= scoreHighlightRange)
+        {
+            SoundManager.Instance.PlayMilestone();
+            lastScoreHightlight += scoreHighlightRange;
+        }
+    }
 }

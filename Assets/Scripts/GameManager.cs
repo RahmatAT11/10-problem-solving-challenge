@@ -25,15 +25,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private float scoreLimit = 10f;
+    private float scoreLimit = 100f;
     public bool isGameOver = false;
 
     private void Update()
     {
-        if (ScoreManager.Instance.Score > scoreLimit)
+        if (ScoreManager.Instance.Score >= scoreLimit)
         {
             isGameOver = true;
+            SoundManager.Instance.PlayGameOver();
             UIManager.Instance.SetGameOverPanelActive();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RestartGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            
         }
     }
 
@@ -41,7 +52,12 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            RestartGame();
         }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

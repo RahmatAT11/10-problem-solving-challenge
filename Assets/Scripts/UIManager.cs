@@ -37,6 +37,8 @@ public class UIManager : MonoBehaviour
         
         RestartButton.onClick.AddListener(() =>
             GameManager.Instance.GameOver());
+        
+        ChangeScore();
     }
 
     public void SetGameOverPanelActive()
